@@ -1,0 +1,196 @@
+Function invalidmobilenomsg()
+	SystemUtil.CloseProcessByName "chrome.exe"
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	If Browser(browserObject).Page(pageObject).WebElement(msgvald).Exist Then
+		Browser(browserObject).Page(pageObject).WebElement(msgvald).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebElement(msgvald).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Incorrect mobile number massege verification successful" , "Pass"
+	Else
+		Reporter.ReportEvent micFail,"Incorrect mobile number massege verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function invalidOTP()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	Browser(browserObject).Page(pageObject).WebEdit(OTPwebEdit).Set DataTable.Value("invldOTP",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(verifyOTPbtn).Click
+	If Browser(browserObject).Page(pageObject).WebElement(msgvald1).Exist Then
+		Browser(browserObject).Page(pageObject).WebElement(msgvald1).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebElement(msgvald1).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Incorrect OTP massege verification successful" , "Pass"
+	Else
+		Reporter.ReportEvent micFail,"Incorrect OTP massege verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function resendOTPbtn()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	wait(61)
+	If Browser(browserObject).Page(pageObject).Link(rsndbtn).Exist Then
+		Browser(browserObject).Page(pageObject).Link(rsndbtn).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).Link(rsndbtn).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Resend Otp button verification successful" , "Pass" 
+	Else
+		Reporter.ReportEvent micFail,"Resend Otp button verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function resendOTPcallbtn()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	wait(61)
+	If Browser(browserObject).Page(pageObject).Link(rsndOTPcallbtn).Exist Then
+		Browser(browserObject).Page(pageObject).Link(rsndOTPcallbtn).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).Link(rsndOTPcallbtn).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Resend Otp call button verification successful" , "Pass"
+	Else
+		Reporter.ReportEvent micFail,"Resend Otp call button verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function countryavlcheckmsg()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebElement("class:=css-22l1m-StyledArrowDown e1outat53").Click
+	Browser(browserObject).Page(pageObject).WebElement(country).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	If Browser(browserObject).Page(pageObject).WebElement(countryavlchkmsg).Exist Then
+		Browser(browserObject).Page(pageObject).WebElement(countryavlchkmsg).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebElement(countryavlchkmsg).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Country availability message verification successful" , "Pass"  
+	Else
+		Reporter.ReportEvent micFail,"Country availability message verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function IITJEmsgvld()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser("title:=Unacademy - India's largest learning platform").Page("title:=Unacademy - India's largest learning platform").sync
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn).Click
+	Browser(browserObject).Page(pageObject).WebEdit(numberwebEdit).Set DataTable.Value("mobileno",excelName)
+	Browser(browserObject).Page(pageObject).WebButton(loginbtn1).Click
+	wait 61
+	Browser(browserObject).Page(pageObject).WebButton(verifyOTPbtn).Click
+	wait 2
+	Browser(browserObject).Page(pageObject).WebElement(IITJEEbtn).Click
+	wait 1
+	If Browser(browserObject).Page(pageObject).WebElement(IITJEEmsgvld).Exist Then
+		Browser(browserObject).Page(pageObject).WebElement(IITJEEmsgvld).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebElement(IITJEEmsgvld).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"IIT JEE massege verification successful" , "Pass"
+	Else
+		Reporter.ReportEvent micFail,"IIT JEE massege verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+Function ntfycntropnmsg()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser(browserObject).Page(pageObject).WebElement(IITJEEbtn).Click
+	wait 0.5
+	Browser(browserObject).Page(pageObject).WebElement(viewsubscpnbtn).Click
+	wait 0.5
+	Browser(browserObject).Page(pageObject).WebElement(choosebtchbtn).Click
+	wait 0.5
+	Browser(browserObject).Page(pageObject).WebElement("class:=search-dd-icon css-17itjsi-StyledArrowDown e1lzfm393").Click
+	Browser(browserObject).Page(pageObject).WebElement(cityname).Click
+	Browser(browserObject).Page(pageObject).WebButton("class:= eiotkp611 css-1wqkzrg-StyledButton-StyButton e1wp3nh0").Click
+	If Browser(browserObject).Page(pageObject).WebElement(ntfycntropenmsg).Exist Then
+		Browser(browserObject).Page(pageObject).WebElement(ntfycntropenmsg).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebElement(ntfycntropenmsg).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Notify center open message verification successful" , "Pass"
+	Else
+		Reporter.ReportEvent micFail,"Notify center open message verification unsuccessful" , "Fail"
+	End if
+	If instr(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) > 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+
+Function signout()
+	SystemUtil.Run"chrome.exe"
+	Browser(browserObject).Navigate DataTable.Value("Url",excelName)
+	Browser(browserObject).Page(pageObject).Image("class:=eo405q10 css-14ur5xl-StyledAvatar-UserAvatar ecs7e9v0").Click
+	Browser(browserObject).Page(pageObject).WebElement(signoutt).Click
+	If Browser(browserObject).Page(pageObject).WebButton(loginbtn).Exist Then
+		Browser(browserObject).Page(pageObject).WebButton(loginbtn).Highlight
+		DataTable.Value("Actualmsgoutput",excelName) = Browser(browserObject).Page(pageObject).WebButton(loginbtn).GetROProperty("innertext")
+	    Reporter.ReportEvent micPass,"Sign out successful" , "Pass"  
+	Else
+		Reporter.ReportEvent micFail,"Sign out unsuccessful" , "Fail"
+	End if
+	If strcomp(Ucase(replace(DataTable.Value("Actualmsgoutput",excelName)," ","")),Ucase(replace(DataTable.Value("Expectedmsgoutput",excelName)," ",""))) = 0 Then
+	    DataTable.Value("Result",excelName) = "Pass"
+	Else
+		DataTable.Value("Result",excelName) = "Fail"
+	End if
+	SystemUtil.CloseProcessByName "chrome.exe"
+End Function
+
+
+
+
+
