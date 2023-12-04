@@ -1,0 +1,39 @@
+
+Function executeTest(TestCaseID)
+	Select Case TestCaseID
+		Case "TC_001":
+			services.StartTransaction "TC_001"
+			invalidmobilenomsg()
+			services.EndTransaction "TC_001"
+		Case "TC_002":
+			services.StartTransaction "TC_002"
+			invalidOTP()
+			services.EndTransaction "TC_002"
+		Case "TC_003":
+			services.StartTransaction "TC_003"
+			resendOTPbtn()
+			services.EndTransaction "TC_003"
+		Case "TC_004":
+			services.StartTransaction "TC_004"
+			resendOTPcallbtn()
+			services.EndTransaction "TC_004"
+		Case "TC_005":
+			services.StartTransaction "TC_005"
+			countryavlcheckmsg()
+			services.EndTransaction "TC_005"
+		Case "TC_006":
+			services.StartTransaction "TC_006"
+			IITJEmsgvld()
+			services.EndTransaction "TC_006"
+		Case "TC_007":
+			services.StartTransaction "TC_007"
+			ntfycntropnmsg()
+			services.EndTransaction "TC_007"
+		Case "TC_008":
+			services.StartTransaction "TC_008"
+			signout()
+			services.EndTransaction "TC_008"
+		Case else
+			MsgBox("Wrong Test Case Number")
+	End Select
+End Function
