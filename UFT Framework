@@ -1,0 +1,27 @@
+
+DataTable.AddSheet excelName
+DataTable.ImportSheet filePath,sheetName, excelName
+rowCount = DataTable.GetSheet(excelName).GetRowCount
+For rows = 1 To rowCount
+	DataTable.SetCurrentRow rows
+	If DataTable.Value("Flag",excelName)="Y" Then
+		executeTest (DataTable.Value("TestCaseID",excelName))
+		'On Error Resume Next
+	End If
+Next
+DataTable.ExportSheet filePath,excelName,sheetName
+
+'Browser("title:=Unacademy - India's largest learning platform","openurl:=").Page("title:=Unacademy - India's largest learning platform").WebElement("class:=css-22l1m-StyledArrowDown e1outat53").Click
+																																												
+'----------Object Repositories Function Call -------------
+
+'------------------Descriptive Programming Function Call-------------------
+
+'Call invalidmobilenomsg(Result)
+'Call invalidOTP(Result)
+'Call resendOTPbtn(Result)
+'Call resendOTPcallbtn(Result)
+'Call countryavlcheckmsg(Result)
+'Call IITJEmsgvld(Result)
+'Call ntfycntropnmsg(Result)
+'Call signout(Result)
